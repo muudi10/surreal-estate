@@ -1,0 +1,12 @@
+.input-text-fields{
+    display:inline-block;
+    flex-direction:row;
+    margin-bottom: 1.25em;
+    width: 70vw;
+    border: 1px solid black;
+    border-right: 2px solid black;
+    border-bottom: 2px solid black; 
+}
+.input-text-fields input{
+    margin:15px
+}
