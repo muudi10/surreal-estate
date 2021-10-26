@@ -1,53 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect ,useContext } from "react";
+import {DataContext} from "../context/DataContext"
 import "../styles/Addproperty.css";
 import axios from "axios";
 const urlEndPoint = process.env.REACT_APP_APIENDPOINT
-import Alert from "./Alert"
+import Alert from "./Alert";
+import hanldeAddProperty from "../API/API";
 function AddProperty() {
-  const [message, SetMessage] = useState(false)
-  const initialState = {
-    fields: {
-      title: "",
-      type: "Flat",
-      bedrooms: "",
-      bathrooms: "",
-      price: "",
-      city: "Manchester",
-      email: "",
-    
-    },
-  };
-  const [fields, setFields] = useState(initialState.fields);
-  const handleFieldChange = (event) => {
-    event.preventDefault();
-    setFields((prev) => ({
-      ...prev,
-      [event.target.name]: event.target.value,
-    }));
-  };
-  const hanldeAddProperty = async(e) => {
-    e.preventDefault();
-
-try {
-     const response = await axios.post(urlEndPoint,{
-      title: fields.title,
-      type: fields.type,
-      bedrooms: fields.bedrooms,
-      bathrooms: fields.bathrooms,
-      price: fields.price,
-      city: fields.city,
-      email: fields.email,
-
-    })
-    const data = await response
-    console.log(data.data)
-    await SetMessage(`Form has been submited sucessfully`)
-} catch (error) {
-
-  SetMessage(`Failed to submit form`)
-} 
-
-  };
+   const {message,handleFieldChange, setMessage, properties, getData,fields} = useContext(DataContext)
+   
+   const handleSubmit =(e)=>{
+     e.preventDefault()
+     return hanldeAddProperty(fields, setMessage)
+     console.log(`fields`);
+   }
+console.log(fields);
+   useEffect( () => {
+   getData()
+   },[fields])
+     
   return (
     <div className="Addproperty">
      {message && < Alert message ={message} /> }
@@ -149,7 +119,7 @@ try {
               onChange={handleFieldChange}
             />
           </label>
-          <button className="button" onClick={hanldeAddProperty} type="submit">
+          <button className="button" type="submit" onClick={handleSubmit} >
             Submit
           </button>
         </fieldset>
