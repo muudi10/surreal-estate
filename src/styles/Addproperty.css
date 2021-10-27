@@ -1,16 +1,25 @@
+.mainclass{
+	display:flex;
+justify-content: center;
+
+}
+.sidebar {
+	width: 50%;
+	height: vh;
+	border: 1px solid #2547;
+	border-radius:10px;
+	background:grayscale
+}
 .Addproperty{
-	max-width: 500px;
-	padding: 10px 20px;
+	max-width: 100%;
 	background: #f4f7f8;
-	margin: 10px auto;
 	padding: 20px;
 	background: #f4f7f8;
 	border-radius: 8px;
 }
-.Addproperty fieldset{
-	border: none;
+.form{
+	width: 100%;
 }
-
 .Addproperty label {
 	display: block;
 	margin-bottom: 8px;
@@ -19,7 +28,7 @@
 .Addproperty input[type="email"],
 .Addproperty input[type="number"],
 .Addproperty select {
-	background: rgba(255,255,255,.1);
+	background: rgba(207, 171, 171, 0.1);
 	border: none;
 	border-radius: 4px;
 	font-size: 15px;

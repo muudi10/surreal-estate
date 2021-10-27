@@ -1,10 +1,10 @@
+/* eslint-disable react/prop-types */
 import React, { useState, createContext, useEffect } from "react";
 import axios from "axios";
 export const DataContext = createContext();
 const urlEndPoint = process.env.REACT_APP_APIENDPOINT;
- import hanldeAddProperty from '../API/API'
+import hanldeAddProperty from "../API/API";
 export const DataContextProvider = (props) => {
- const [properties, setProperties] = useState({})
   const [message, setMessage] = useState(false);
   const initialState = {
     fields: {
@@ -26,13 +26,19 @@ export const DataContextProvider = (props) => {
     }));
   };
 
-   let data ;
+  let data;
 
-  const getData = async() => {
-      const properies = await axios.get(urlEndPoint)
-       data = await properies.data
-      setProperties(data)
-  }
+  const [properties, setProperties] = useState();
+  const getData = async () => {
+    const property = await axios.get(urlEndPoint);
+    const data = await property.data;
+    console.log(data);
+    setProperties(data);
+  };
+
+  useEffect(() => {});
+
+ 
 
   const value = {
     fields,
@@ -40,12 +46,14 @@ export const DataContextProvider = (props) => {
     message,
     setMessage,
     handleFieldChange,
-    getData,
-    properties
+    properties,
+    getData
   };
 
   return (
     // eslint-disable-next-line react/prop-types
-    <DataContext.Provider initialState={initialState.fields} value={value}>{props.children} </DataContext.Provider>
+    <DataContext.Provider initialState={initialState.fields} value={value}>
+      {props.children}{" "}
+    </DataContext.Provider>
   );
 };

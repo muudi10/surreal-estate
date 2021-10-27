@@ -4,16 +4,16 @@ import PropertyCard from "./ProperyCard";
 import { DataContext } from "../context/DataContext";
 import { useContext, useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import connection from "../API/API";
+// import getData from "../API/getData";
 
 function Properties() {
-  const { properties, getData } = useContext(DataContext);
-  useEffect( () => {
-    getData()
- console.log(properties)
-    })
-  console.log(properties);
-  
+  const {properties,getData} =useContext(DataContext)
+   console.log(properties);
+
+
+   useEffect(()=>{
+getData()
+   },[])
   return (
     <>
       {/* <div div className="container"> */}

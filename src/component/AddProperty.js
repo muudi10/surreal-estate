@@ -5,23 +5,23 @@ import axios from "axios";
 const urlEndPoint = process.env.REACT_APP_APIENDPOINT
 import Alert from "./Alert";
 import hanldeAddProperty from "../API/API";
-function AddProperty() {
+// eslint-disable-next-line react/prop-types
+function AddProperty({fetpro}) {
    const {message,handleFieldChange, setMessage, properties, getData,fields} = useContext(DataContext)
-   
+    
    const handleSubmit =(e)=>{
      e.preventDefault()
      return hanldeAddProperty(fields, setMessage)
      console.log(`fields`);
    }
-console.log(fields);
-   useEffect( () => {
-   getData()
-   },[fields])
-     
+
   return (
+
+    <>
+    <div className="mainclass flex"> 
     <div className="Addproperty">
      {message && < Alert message ={message} /> }
-      <form>
+      <form className="form">
         <fieldset className="input-text-fields">
           <label htmlFor="title">
             Title:
@@ -119,12 +119,17 @@ console.log(fields);
               onChange={handleFieldChange}
             />
           </label>
-          <button className="button" type="submit" onClick={handleSubmit} >
+          <button className="button" type="submit" onClick={fetpro} >
             Submit
           </button>
         </fieldset>
       </form>
     </div>
+    <div className="sidebar">
+      somettect
+    </div>
+    </div>
+     </>
   );
 }
 
